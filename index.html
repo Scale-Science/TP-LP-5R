@@ -138,8 +138,8 @@ p:last-child{margin-bottom:0}
 @media (min-width:640px){.promo .desk{display:inline}}
 
 /* ---------- 2. Trust strip ---------- */
-.trust{padding:26px 0 0;text-align:center;font-size:.92rem;color:rgba(255,255,255,.85);font-weight:500;background:var(--navy-2)}
-.trust .stars{color:#fff;letter-spacing:1px;margin-right:8px;font-size:.95rem}
+.trust{padding:26px 0 0;text-align:center;font-size:.8rem;white-space:nowrap;color:rgba(255,255,255,.85);font-weight:500;background:var(--navy-2)}
+.trust .stars{color:#fff;letter-spacing:0;margin-right:6px;font-size:.9rem}
 .trust strong{color:#fff;font-weight:600}
 
 /* ---------- 3. Hero ---------- */
@@ -151,30 +151,55 @@ p:last-child{margin-bottom:0}
 }
 .hero .eyebrow{color:var(--teal)}
 .hero .eyebrow::before{background:var(--teal)}
-.hero__grid{display:grid;gap:34px}
-.hero__copy .btn{margin-top:26px}
-.hero__sub{color:rgba(255,255,255,.85);font-size:clamp(1.02rem,1.35vw,1.15rem);margin-top:18px;max-width:58ch}
-.benefits{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:12px}
-.benefits li{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:center;font-size:1rem;line-height:1.4}
+.hero__grid{display:grid;gap:22px;text-align:center;justify-items:center}
+.hero__accent{color:var(--teal)}
+.hero .eyebrow::before{display:none}
+.hero .eyebrow{margin-bottom:0}
+.hero h1{max-width:14ch}
+.hero__sub{color:rgba(255,255,255,.85);font-size:clamp(1.02rem,1.35vw,1.15rem);margin-top:6px;max-width:58ch}
+.benefits{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.benefits li{display:flex;flex-direction:column;align-items:center;gap:10px;font-size:.8rem;line-height:1.35;color:rgba(255,255,255,.8)}
+.benefits li strong{display:block;color:#fff;font-size:.92rem;line-height:1.25;margin-bottom:2px}
 .benefits .ic{
-  width:44px;height:44px;border-radius:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:var(--teal);
-  display:grid;place-items:center;
+  width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:var(--teal);
+  display:grid;place-items:center;flex:none;
 }
-.benefits .ic svg{width:22px;height:22px}
-.hero__media{position:relative}
+.benefits .ic svg{width:30px;height:30px;stroke-width:1.6}
+.hero .cta-stack{align-items:center;width:100%}
+.hero .cta-stack .btn{margin-top:8px}
+.hero .guarantee{justify-content:center}
+.hero__media{position:relative;width:100%;max-width:440px}
 .hero__img{
   border-radius:var(--radius);aspect-ratio:4/5;width:100%;object-fit:cover;object-position:center 40%;
   box-shadow:0 30px 60px rgba(0,0,0,.35);
 }
 .hero__badge{
-  position:absolute;left:14px;bottom:14px;background:#fff;color:var(--navy);border-radius:14px;
-  padding:10px 14px;box-shadow:var(--shadow);display:flex;gap:10px;align-items:center;font-size:.85rem;font-weight:600;
+  display:none;position:absolute;left:14px;bottom:14px;background:#fff;color:var(--navy);border-radius:14px;
+  padding:10px 14px;box-shadow:var(--shadow);gap:10px;align-items:center;font-size:.85rem;font-weight:600;
 }
 .hero__badge b{display:block;font-size:1.05rem;font-weight:600;letter-spacing:-.01em;line-height:1.1;color:var(--navy)}
 .hero__badge .dot{width:10px;height:10px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(47,219,228,.25)}
 @media (min-width:900px){
   .hero{padding:44px 0 84px}
-  .hero__grid{grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero__grid{
+    grid-template-columns:1.05fr .95fr;grid-template-rows:auto auto auto auto 1fr;column-gap:56px;row-gap:0;
+    grid-template-areas:"eyebrow media" "h1 media" "sub media" "benefits media" "cta media";
+    text-align:left;justify-items:start;align-items:start;
+  }
+  .hero .eyebrow{grid-area:eyebrow;margin-bottom:14px}
+  .hero .eyebrow::before{display:inline-block}
+  .hero h1{grid-area:h1;max-width:none}
+  .hero__sub{grid-area:sub;margin-top:18px}
+  .benefits{grid-area:benefits;grid-template-columns:1fr;gap:12px;margin-top:26px}
+  .benefits li{flex-direction:row;text-align:left;font-size:1rem;gap:14px;color:#fff}
+  .benefits li strong{display:inline;font-size:inherit;margin:0}
+  .benefits .ic{width:44px;height:44px;border-radius:8px}
+  .benefits .ic svg{width:22px;height:22px;stroke-width:2}
+  .hero .cta-stack{grid-area:cta;align-items:flex-start;margin-top:26px}
+  .hero .guarantee{justify-content:flex-start}
+  .hero__media{grid-area:media;max-width:none;align-self:center}
+  .hero__badge{display:flex}
+  .trust{font-size:.92rem}
 }
 
 /* ---------- 4. Press ---------- */
@@ -649,11 +674,19 @@ body.has-sticky{padding-bottom:96px}
 <!-- 3. HERO -->
 <section class="hero" id="hero">
   <div class="wrap hero__grid">
-    <div class="hero__copy">
-      <div class="eyebrow ld ld-1">World's 1st research-backed remineralizing chewing gum</div>
-      <h1 class="ld ld-1">Most gum just masks your breath. This one cleans your teeth.</h1>
-      <p class="hero__sub ld ld-2">Toothpod delivers four clinically researched ingredients while you chew: one to target decay bacteria, one to strengthen enamel, one to fight plaque, and one to calm your gums. Dentists got it before you could buy it. Now it's in 500+ dental offices and finally available direct.</p>
-      <ul class="benefits ld ld-2">
+    <div class="eyebrow ld ld-1">World's 1st research-backed remineralizing chewing gum</div>
+    <h1 class="ld ld-1">Most gum just masks your breath. <span class="hero__accent">This one cleans your teeth.</span></h1>
+    <div class="hero__media ld ld-2">
+      <img class="hero__img"
+        src="assets/shoot/hero-1200.webp"
+        srcset="assets/shoot/hero-600.webp 600w, assets/shoot/hero-1200.webp 1200w"
+        sizes="(min-width: 900px) 46vw, 92vw"
+        width="1200" height="1800" fetchpriority="high" decoding="async"
+        alt="An open Toothpod box of Dental Smart Gum pouches">
+      <div class="hero__badge"><span class="dot" aria-hidden="true"></span><span><b>500+</b>dental offices</span></div>
+    </div>
+    <p class="hero__sub ld ld-2">Toothpod delivers four clinically researched ingredients while you chew: one to target decay bacteria, one to strengthen enamel, one to fight plaque, and one to calm your gums. Dentists got it before you could buy it. Now it's in 500+ dental offices and finally available direct.</p>
+    <ul class="benefits ld ld-2">
         <li>
           <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
           <span><strong>Targets the bacteria</strong> behind cavities, plaque and bad breath</span>
@@ -666,24 +699,14 @@ body.has-sticky{padding-bottom:96px}
           <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></span>
           <span><strong>2x more plaque removed</strong> than the leading xylitol gum in clinical testing</span>
         </li>
-      </ul>
-      <div class="cta-stack ld ld-3">
+    </ul>
+    <div class="cta-stack ld ld-3">
         <a class="btn btn--white" href="#shop" data-scroll-shop>Buy 2, Get 1 Free <span class="arrow" aria-hidden="true">→</span></a>
         <div class="guarantee">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>100% money-back guarantee.</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Free shipping.</span>
         </div>
       </div>
-    </div>
-    <div class="hero__media ld ld-3">
-      <img class="hero__img"
-        src="assets/shoot/hero-1200.webp"
-        srcset="assets/shoot/hero-600.webp 600w, assets/shoot/hero-1200.webp 1200w"
-        sizes="(min-width: 900px) 46vw, 92vw"
-        width="1200" height="1800" fetchpriority="high" decoding="async"
-        alt="An open Toothpod box of Dental Smart Gum pouches">
-      <div class="hero__badge"><span class="dot" aria-hidden="true"></span><span><b>500+</b>dental offices</span></div>
-    </div>
   </div>
 </section>
 
