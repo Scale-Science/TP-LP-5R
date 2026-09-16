@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ page_title }}</title>
+  {%- if page_description -%}<meta name="description" content="{{ page_description | escape }}">{%- endif -%}
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- comment -%} Paid-traffic landing page: keep it out of organic search. Remove if it should rank. {%- endcomment -%}
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="https://toothpod.co/cdn/shop/files/077a8814-toothpod-podium-sq.webp?width=900" imagesrcset="https://toothpod.co/cdn/shop/files/077a8814-toothpod-podium-sq.webp?width=600 600w, https://toothpod.co/cdn/shop/files/077a8814-toothpod-podium-sq.webp?width=900 900w, https://toothpod.co/cdn/shop/files/077a8814-toothpod-podium-sq.webp?width=1200 1200w" imagesizes="(min-width: 900px) 46vw, 92vw" fetchpriority="high">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  {{ content_for_header }}
+</head>
+<body>
+  {{ content_for_layout }}
+</body>
+</html>
